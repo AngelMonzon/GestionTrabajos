@@ -220,12 +220,13 @@ public class OperacionesCRUD {
     }
 
     public static void main(String[] args) {
-        crearTablaClientes();
-        crearTablaTrabajos();
-        insertarCliente("Adolfo", "8994478921", "Cuauhtli");
-        insertarTrabajo("Instalacion Minisplit", 1,
-                LocalDate.of(2022, 10, 25), LocalDate.of(2023, 4, 25),
-                550, "Nada");
+
+        String[] nombres_trabajos = {"Instalación de minisplit en sala", "Mantenimiento de minisplit en recámara", "Instalación de minisplit en cocina", "Mantenimiento de minisplit en baño", "Instalación de minisplit en oficina", "Mantenimiento de minisplit en sala", "Instalación de minisplit en recámara", "Mantenimiento de minisplit en cocina", "Instalación de minisplit en baño", "Mantenimiento de minisplit en oficina", "Instalación de minisplit en sala", "Mantenimiento de minisplit en recámara", "Instalación de minisplit en cocina", "Mantenimiento de minisplit en baño", "Instalación de minisplit en oficina", "Mantenimiento de minisplit en sala", "Instalación de minisplit en recámara", "Mantenimiento de minisplit en cocina", "Instalación de minisplit en baño", "Mantenimiento de minisplit en oficina", "Instalación de minisplit en sala", "Mantenimiento de minisplit en recámara", "Instalación de minisplit en cocina", "Mantenimiento de minisplit en baño", "Instalación de minisplit en oficina", "Mantenimiento de minisplit en sala", "Instalación de minisplit en recámara", "Mantenimiento de minisplit en cocina", "Instalación de minisplit en baño", "Mantenimiento de minisplit en oficina", "Instalación de minisplit en sala", "Mantenimiento de minisplit en recámara", "Instalación de minisplit en cocina", "Mantenimiento de minisplit en baño", "Instalación de minisplit en oficina", "Mantenimiento de minisplit en sala", "Instalación de minisplit en recámara", "Mantenimiento de minisplit en cocina", "Instalación de minisplit en baño", "Mantenimiento de minisplit en oficina", "Instalación de minisplit en sala", "Mantenimiento de minisplit en recámara", "Instalación de minisplit en cocina", "Mantenimiento de minisplit en baño", "Instalación de minisplit en oficina", "Mantenimiento de minisplit en sala", "Instalación de minisplit en recámara", "Mantenimiento de minisplit en cocina", "Instalación de minisplit en baño", "Mantenimiento de minisplit en oficina"};
+
+        for (int i = 0; i < 50; i++) {
+            insertarTrabajo(nombres_trabajos[i % nombres_trabajos.length], i, LocalDate.of(1950 + i, 10, 25),
+                    LocalDate.of(1950 + i, 10, 25), 550, "Nada");
+        }
     }
 
 }

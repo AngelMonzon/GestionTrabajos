@@ -6,7 +6,10 @@ module com.registro.registro {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
+
     opens com.registro.registro to javafx.fxml;
     opens com.registro.registro.Logica to javafx.base;
+
     exports com.registro.registro;
+    exports com.registro.registro.Logica;
 }

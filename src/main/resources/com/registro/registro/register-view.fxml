@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.registro.registro.RegisterController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox alignment="CENTER" spacing="20.0" fx:id="menu">
+        <fx:define>
+            <ToggleGroup fx:id="toggleGroup"/>
+        </fx:define>
+
+        <ToggleButton text="Tabla de trabajos" onAction="#cambiarLayout" fx:id="mostrarBtn" toggleGroup="$toggleGroup"/>
+        <ToggleButton text="Agregar Trabajo/cliente" onAction="#cambiarLayout" fx:id="agregarBtn" toggleGroup="$toggleGroup"/>
+
+    </HBox>
+
+    <StackPane alignment="CENTER" fx:id="content">
+        <StackPane fx:id="mostrarTrabajos">
+            <TableView fx:id="jobsTable">
+                <columns>
+                    <TableColumn prefWidth="20" text="ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id_venta" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="170" text="Trabajo">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nombre_trabajo" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="100" text="Fecha trabajo">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="fecha_instalacion" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="130" text="Prox. mantenimiento">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="fecha_mantenimiento" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="70" text="Costo">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="costo" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="300" text="Comentarios">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="comentarios" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="90" text="Cliente">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="cliente" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="90" text="Celular">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="numero_telefono" />
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn prefWidth="200" text="Direccion">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="direccion" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </StackPane>
+
+        <StackPane fx:id="agregarTrabajos">
+            <HBox spacing="20">
+
+                <VBox HBox.hgrow="ALWAYS" >
+                    <Label text="Agregar Usuario"></Label>
+                    <GridPane hgap="10" vgap="10" style="-fx-border-color: #ccc; -fx-padding: 10;">
+
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" /> <!-- Columna 1 ocupa el 50% del espacio -->
+                            <ColumnConstraints percentWidth="50" /> <!-- Columna 2 ocupa el 50% del espacio -->
+                        </columnConstraints>
+
+                        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Numero de telefono:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="txtNumTel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Direccion:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="txtDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                        <Button text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="3"></Button>
+
+                    </GridPane>
+                </VBox>
+
+                <VBox HBox.hgrow="ALWAYS" >
+                    <Label text="Agregar Trabajo"></Label>
+                    <GridPane hgap="10" vgap="10" style="-fx-border-color: #ccc; -fx-padding: 10;">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" /> <!-- Columna 1 ocupa el 50% del espacio -->
+                            <ColumnConstraints percentWidth="50" /> <!-- Columna 2 ocupa el 50% del espacio -->
+                        </columnConstraints>
+
+                        <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <ComboBox fx:id="cliente" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Nombre de trabajo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="nombre_trabajo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <DatePicker fx:id="fecha_instalacion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                        <Label text="Fecha de mantenimiento:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <DatePicker fx:id="fecha_mantenimiento" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                        <Label text="Costo:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <TextField fx:id="costo" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                        <Label text="Comentarios:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <TextArea fx:id="comentarios" GridPane.columnIndex="1" GridPane.rowIndex="5" wrapText="true" prefHeight="50" prefWidth="50"/>
+
+                        <Button text="Guardar"/>
+                    </GridPane>
+                </VBox>
+            </HBox>
+        </StackPane>
+    </StackPane>
+
+</VBox>
