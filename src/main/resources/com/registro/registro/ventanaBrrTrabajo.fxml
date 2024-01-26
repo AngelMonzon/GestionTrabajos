@@ -87,7 +87,7 @@
         </TableView>
     </VBox>
 
-    <Button text="Borrar trabajo seleccionado"></Button>
+    <Button text="Borrar trabajo seleccionado" styleClass=""></Button>
 
 
 

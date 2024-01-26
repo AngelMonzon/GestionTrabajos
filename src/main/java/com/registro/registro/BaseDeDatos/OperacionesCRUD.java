@@ -120,6 +120,48 @@ public class OperacionesCRUD {
         }
     }
 
+    //Mostrar trabajos de un cliente
+    public static void mostrarTrabajosCliente(int id, ObservableList<Trabajo> data) {
+        String seleccionartrabajosSQL = "SELECT * " +
+                "FROM trabajos " +
+                "JOIN clientes ON clientes.id_cliente = trabajos.id_cliente " +
+                "WHERE trabajos.id_cliente = ?";
+
+        try (Connection conexion = ConnectBD.obtenerConexion();
+             PreparedStatement statement = conexion.prepareStatement(seleccionartrabajosSQL)) {
+
+            // Establecer el valor del parámetro
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()){
+                while (resultSet.next()) {
+                    int id_venta = resultSet.getInt("id_venta");
+                    int id_cliente = resultSet.getInt("id_cliente");
+                    String nombre_trabajo = resultSet.getString("nombre_trabajo");
+                    LocalDate fecha_instalacion = resultSet.getDate("fecha_instalacion").toLocalDate();
+                    LocalDate fecha_mantenimiento = resultSet.getDate("fecha_mantenimiento").toLocalDate();
+                    double costo = resultSet.getDouble("costo");
+                    String comentarios = resultSet.getString("comentarios");
+                    String nombre_cliente = resultSet.getString("nombre_cliente");
+                    String numero_telefono = resultSet.getString("numero_telefono");
+                    String direccion = resultSet.getString("direccion");
+
+                    data.add(new Trabajo(id_venta, id_cliente, nombre_trabajo, fecha_instalacion, fecha_mantenimiento,
+                            costo, comentarios, nombre_cliente, numero_telefono, direccion));
+
+                }
+            }
+
+            ConnectBD.cerrarConexion(conexion);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     //Mostrar clientes
     public static void mostrarClientes(ObservableList<Cliente> data) {
         String seleccionartrabajosSQL = "SELECT * " +
@@ -318,6 +360,24 @@ public class OperacionesCRUD {
             e.printStackTrace();
         }
     }
+
+    //Eliminar todos los trabajos de un cliente
+
+    public static void eliminarTrabajosCliente(int id) {
+        String eliminarTrbajosSQL = "DELETE FROM trabajos WHERE id_cliente = ?";
+
+        try (Connection conexion = ConnectBD.obtenerConexion();
+             PreparedStatement preparedStatement = conexion.prepareStatement(eliminarTrbajosSQL)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            System.out.println("trabajos eliminados exitosamente.");
+
+            ConnectBD.cerrarConexion(conexion);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
 

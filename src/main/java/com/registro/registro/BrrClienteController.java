@@ -5,60 +5,85 @@ import com.registro.registro.BaseDeDatos.OperacionesCRUD;
 import com.registro.registro.BaseDeDatos.Trabajo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert;
-import javafx.stage.Modality;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.table.TableFilter;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BrrClienteController implements Initializable {
 
-    //Variables para tabla de mostrar trabajos
-    ObservableList<Cliente> data = FXCollections.observableArrayList();
+    @FXML
+    private VBox clientsPane;
 
     @FXML
-    private TableView<Cliente> jobsTable;
+    private VBox jobsPane;
+
+    //Variables para tabla de mostrar trabajos
+    ObservableList<Cliente> dataClients = FXCollections.observableArrayList();
+
+    //Variables para tabla de mostrar trabajos
+    ObservableList<Trabajo> dataJobs = FXCollections.observableArrayList();
+
+    //Variable para cliente seleccionado
+    int id = 0;
+
+    @FXML
+    private TableView<Cliente> clientsTable;
+
+    @FXML
+    private TableView<Trabajo> jobsTable;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cargarClientes();
-        System.out.println(data);
+        System.out.println(dataClients);
+        jobsPane.setVisible(false);
     }
 
     @FXML
-    private void borrarCliente() {
+    private void cambiarVentana() {
+
+
         try {
-            int seleccion = jobsTable.getSelectionModel().getSelectedItems().get(0).getId_cliente();
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación");
-            alert.setHeaderText("¿Estás seguro de borrar el cliente seleccionado?");
-
-            // Configurar el modality para bloquear la ventana principal mientras se muestra la alerta
-            alert.initModality(Modality.APPLICATION_MODAL);
-
-            // Mostrar la ventana de confirmación y esperar a que el usuario responda
-            alert.showAndWait().ifPresent(response -> {
-                if (response == javafx.scene.control.ButtonType.OK) {
-                    OperacionesCRUD.eliminarCliente(seleccion);
-                }
-            });
-
-
-            cargarClientes();
+            this.id = clientsTable.getSelectionModel().getSelectedItems().get(0).getId_cliente();
         } catch (IndexOutOfBoundsException e){
-            mostrarAlerta("Ningun cliente seleccionado." , Alert.AlertType.INFORMATION);
+
         }
 
+        if (this.id > 0){
+            clientsPane.setVisible(false);
+            jobsPane.setVisible(true);
+            OperacionesCRUD.mostrarTrabajosCliente(this.id, dataJobs);
+            System.out.println(dataJobs);
+            jobsTable.getItems().addAll(dataJobs);
+        } else {
+            mostrarAlerta("Ningun cliente seleccionado", Alert.AlertType.INFORMATION);
+        }
+
+    }
+
+    //Borrar trabajos de cliente
+
+    @FXML
+    private void borrarTrabajosCliente(){
+        OperacionesCRUD.eliminarTrabajosCliente(this.id);
+        OperacionesCRUD.eliminarCliente(this.id);
+        this.id = 0;
+
+        dataJobs.clear();
+        jobsTable.getItems().clear();
+        dataClients.clear();
+        clientsTable.getItems().clear();
+
+        jobsPane.setVisible(false);
+        clientsPane.setVisible(true);
     }
 
 
@@ -76,9 +101,16 @@ public class BrrClienteController implements Initializable {
     }
 
     private void cargarClientes(){
-        this.data.clear();
-        OperacionesCRUD.mostrarClientes(this.data);
-        jobsTable.setItems(data);
-        TableFilter<Cliente> tableFilter = TableFilter.forTableView(jobsTable).apply();
+        this.dataClients.clear();
+        OperacionesCRUD.mostrarClientes(this.dataClients);
+        clientsTable.setItems(dataClients);
+        TableFilter<Cliente> tableFilter = TableFilter.forTableView(clientsTable).apply();
+    }
+
+    private void cargarTrabajos(){
+        this.dataJobs.clear();
+        OperacionesCRUD.mostrarTrabajosCliente(id, this.dataJobs);
+        jobsTable.setItems(dataJobs);
+        TableFilter<Trabajo> tableFilter = TableFilter.forTableView(jobsTable).apply();
     }
 }
