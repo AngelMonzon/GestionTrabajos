@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import java.net.URL?>
+
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.registro.registro.MostrarController"
+           prefHeight="400.0" prefWidth="600.0">
+
+    <stylesheets>
+        <URL value="@styles/styles.css" />
+        <URL value="@styles/stylesMostrar.css" />
+    </stylesheets>
+
+
+    <TableView fx:id="jobsTable" styleClass="">
+        <columns>
+            <TableColumn prefWidth="30" text="ID" styleClass="column-header">
+                <cellValueFactory>
+                    <PropertyValueFactory property="id_venta"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="170" text="Trabajo">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nombre_trabajo" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="100" text="Fecha trabajo">
+                <cellValueFactory>
+                    <PropertyValueFactory property="fecha_instalacion" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="130" text="Prox. mantenimiento">
+                <cellValueFactory>
+                    <PropertyValueFactory property="fecha_mantenimiento" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="70" text="Costo">
+                <cellValueFactory>
+                    <PropertyValueFactory property="costo" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="300" text="Comentarios">
+                <cellValueFactory>
+                    <PropertyValueFactory property="comentarios" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="90" text="Cliente">
+                <cellValueFactory>
+                    <PropertyValueFactory property="cliente" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="90" text="Celular">
+                <cellValueFactory>
+                    <PropertyValueFactory property="numero_telefono" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn prefWidth="200" text="Direccion">
+                <cellValueFactory>
+                    <PropertyValueFactory property="direccion" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+</StackPane>

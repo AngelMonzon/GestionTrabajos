@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import org.kordamp.bootstrapfx.BootstrapFX?>
+
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.registro.registro.AgregarController"
+           prefHeight="400.0" prefWidth="600.0">
+
+    <stylesheets>
+        <URL value="@styles/styles.css" />
+        <URL value="@styles/stylesAgregar.css" />
+    </stylesheets>
+
+    <VBox styleClass="panel-padre">
+        <HBox spacing="20">
+
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+
+            <!-- Agregar Cliente -->
+            <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER">
+                <Label text="Agregar Cliente" styleClass="title-label"></Label>
+                <GridPane hgap="10" vgap="10" styleClass="panel-agregar">
+
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" /> <!-- Columna 1 ocupa el 50% del espacio -->
+                        <ColumnConstraints percentWidth="50" /> <!-- Columna 2 ocupa el 50% del espacio -->
+                    </columnConstraints>
+
+                    <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Numero de telefono:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="txtNumTel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Direccion:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <TextField fx:id="txtDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Button text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#GuardarCliente"></Button>
+
+
+                </GridPane>
+
+                <Label fx:id="advertenciaLblClientes"
+                       styleClass="label-danger"></Label>
+
+                <Label visible="false" styleClass="espaciador"></Label>
+
+                <HBox spacing="20" alignment="BOTTOM_CENTER">
+                    <Button text="Borrar cliente" onAction="#ventanaBrrCliente" styleClass="warning-button"></Button>
+                    <Button text="modificar cliente" onAction="#ventanaMdfCliente"></Button>
+                    <Button text="Borrar trabajo" onAction="#ventanaBrrTrabajo" styleClass="warning-button"></Button>
+                    <Button text="modificar trabajo" onAction="#ventanaMdfTrabajo"></Button>
+                </HBox>
+            </VBox>
+
+            <!--  Agregar Trabajo -->
+
+            <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER">
+                <Label text="Agregar Trabajo" styleClass="title-label"></Label>
+                <GridPane hgap="10" vgap="10" styleClass="panel-agregar">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" /> <!-- Columna 1 ocupa el 50% del espacio -->
+                        <ColumnConstraints percentWidth="50" /> <!-- Columna 2 ocupa el 50% del espacio -->
+                    </columnConstraints>
+
+                    <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <SearchableComboBox fx:id="trbCliente" promptText="Selecciona un cliente" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <prefWidth>-6.0</prefWidth>
+                        <prefHeight>-6.0</prefHeight>
+                    </SearchableComboBox>
+
+                    <Label text="Nombre de trabajo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="trbNombre_trabajo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <DatePicker fx:id="trbFecha_instalacion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Fecha de mantenimiento:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <DatePicker fx:id="trbFecha_mantenimiento" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label text="Costo:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <TextField fx:id="trbCosto" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                    <Label text="Comentarios:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <TextArea fx:id="trbComentarios" GridPane.columnIndex="1" GridPane.rowIndex="5" wrapText="true" prefHeight="50" prefWidth="50"/>
+
+                    <Button text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6" onAction="#guardarTrabajo"/>
+                </GridPane>
+                <Label fx:id="advertenciaLblTrabajos" styleClass="label-danger"></Label>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="labelSuccess" styleClass="label-success"></Label>
+    </VBox>
+
+</StackPane>

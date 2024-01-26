@@ -1,6 +1,5 @@
-package com.registro.registro.Logica;
+package com.registro.registro.BaseDeDatos;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
