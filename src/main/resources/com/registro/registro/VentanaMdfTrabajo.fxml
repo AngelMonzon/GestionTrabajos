@@ -3,10 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import org.controlsfx.control.SearchableComboBox?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.registro.registro.MdfTrabajoController"
@@ -100,14 +101,15 @@
         <!--  Formulario para modificar trabajo seleccionado  -->
 
         <VBox fx:id="moficarTrabajo">
-            <HBox>
-                <SearchableComboBox fx:id="trbCliente" promptText="Selecciona un cliente" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <prefWidth>-6.0</prefWidth>
-                    <prefHeight>-6.0</prefHeight>
-                </SearchableComboBox>
-
-                <Button text="Cargar"></Button>
-            </HBox>
+            <Pane>
+                <Button layoutX="0.0" layoutY="18.0" onAction="#volver">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <Image url="@image/volver.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </Pane>
 
             <GridPane vgap="10" hgap="10">
                 <columnConstraints>
@@ -116,7 +118,7 @@
                 </columnConstraints>
 
                 <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <Label></Label>
+                <Label fx:id="cliente" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Nombre de trabajo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <TextField fx:id="trbNombre_trabajo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
@@ -133,7 +135,7 @@
                 <Label text="Comentarios:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
                 <TextArea fx:id="trbComentarios" GridPane.columnIndex="1" GridPane.rowIndex="5" wrapText="true" prefHeight="50" prefWidth="50"/>
 
-                <Button text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <Button text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6" onAction="#actualizarTrabajo"/>
             </GridPane>
         </VBox>
 

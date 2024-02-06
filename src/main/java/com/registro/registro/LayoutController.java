@@ -37,6 +37,9 @@ public class LayoutController implements Initializable {
     @FXML
     private StackPane agregarTrabajosClientes;
 
+    @FXML
+    private StackPane mostrarIcon;
+
     //ToggleButtons para mostrar layout seleccionada
     @FXML
     private ToggleGroup toggleGroup;
@@ -69,7 +72,7 @@ public class LayoutController implements Initializable {
     }
 
     //Cambiar Layout
-    public void cambiarLayout(ActionEvent event){
+    public void cambiarLayout(){
         // Obtener la opción seleccionada y acceder a sus propiedades
         selectedToggle = toggleGroup.getSelectedToggle();
         ToggleButton selectedButton = (ToggleButton) selectedToggle;
@@ -84,8 +87,8 @@ public class LayoutController implements Initializable {
 
 
             System.out.println("Valor seleccionado: " + userData);
-        } catch (RuntimeException e){
-            System.out.println("");
+        } catch (RuntimeException ignored){
+
         }
     }
 

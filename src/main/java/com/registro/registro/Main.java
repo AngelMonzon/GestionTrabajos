@@ -1,20 +1,21 @@
 package com.registro.registro;
 
 import com.registro.registro.BaseDeDatos.OperacionesCRUD;
+import com.registro.registro.Notificaciones.NotificarMantenimiento;
+import com.registro.registro.Notificaciones.ProgramarNotificacion;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import org.controlsfx.tools.Borders;
-import org.kordamp.bootstrapfx.BootstrapFX;
+import java.util.Objects;
 
 public class Main extends Application {
 
-    private static Stage primaryStage;
+    public static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,17 +27,22 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("layout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 510);
 
-        Image icon = new Image(getClass().getResourceAsStream("icono.png"));
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("image/icono.png")));
         primaryStage.getIcons().add(icon);
 
-
-        // Carga los estilos CSS de BootstrapFX
-        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
 
+        Platform.runLater(() -> {
+            System.out.println("Código ejecutado después de cargar");
+            // Colocar aquí el bloque de código que quieres ejecutar después de cargar
+
+            NotificarMantenimiento.notificar(primaryStage);
+        });
+
+        ProgramarNotificacion.programar();
 
     }
 

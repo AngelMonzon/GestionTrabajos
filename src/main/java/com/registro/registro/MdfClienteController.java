@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
@@ -29,9 +28,9 @@ public class MdfClienteController implements Initializable {
     @FXML
     private TextField txtDireccion;
 
-    private ArrayList<String> clientesLista = new ArrayList<String>();
+    private ArrayList<String> clientesLista = new ArrayList<>();
 
-    private ArrayList<String> datosCliente = new ArrayList<String>();
+    private ArrayList<String> datosCliente = new ArrayList<>();
 
     @FXML
     private SearchableComboBox<String> trbCliente;

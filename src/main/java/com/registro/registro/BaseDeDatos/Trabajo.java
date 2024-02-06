@@ -9,11 +9,33 @@ public class Trabajo {
     private String nombre_trabajo;
     private String fecha_instalacion;
     private String fecha_mantenimiento;
+
+    //Fecha sin formato
+    private LocalDate fecha_instalacionSF;
+
+    private LocalDate fecha_mantenimientoSF;
+
     private Double costo;
     private String comentarios;
     private String cliente;
     private String numero_telefono;
     private String direccion;
+
+    public LocalDate getFecha_instalacionSF() {
+        return fecha_instalacionSF;
+    }
+
+    public void setFecha_instalacionSF(LocalDate fecha_instalacionSF) {
+        this.fecha_instalacionSF = fecha_instalacionSF;
+    }
+
+    public LocalDate getFecha_mantenimientoSF() {
+        return fecha_mantenimientoSF;
+    }
+
+    public void setFecha_mantenimientoSF(LocalDate fecha_mantenimientoSF) {
+        this.fecha_mantenimientoSF = fecha_mantenimientoSF;
+    }
 
     public Trabajo(int id_venta, int id_cliente, String nombre_trabajo, LocalDate fecha_instalacion,
                    LocalDate fecha_mantenimiento, Double costo, String comentarios, String cliente,
@@ -23,6 +45,10 @@ public class Trabajo {
         this.nombre_trabajo = nombre_trabajo;
         this.fecha_instalacion = fecha_instalacion.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.fecha_mantenimiento = fecha_mantenimiento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        this.fecha_instalacionSF = fecha_instalacion;
+        this.fecha_mantenimientoSF = fecha_mantenimiento;
+
         this.costo =  costo;
         this.comentarios =  comentarios;
         this.cliente = cliente;
@@ -44,6 +70,24 @@ public class Trabajo {
 
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Trabajo{" +
+                "id_venta=" + id_venta +
+                ", id_cliente=" + id_cliente +
+                ", nombre_trabajo='" + nombre_trabajo + '\'' +
+                ", fecha_instalacion='" + fecha_instalacion + '\'' +
+                ", fecha_mantenimiento='" + fecha_mantenimiento + '\'' +
+                ", fecha_instalacionSF=" + fecha_instalacionSF +
+                ", fecha_mantenimientoSF=" + fecha_mantenimientoSF +
+                ", costo=" + costo +
+                ", comentarios='" + comentarios + '\'' +
+                ", cliente='" + cliente + '\'' +
+                ", numero_telefono='" + numero_telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 
     public String getNombre_trabajo() {

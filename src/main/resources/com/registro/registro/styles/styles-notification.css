@@ -1,0 +1,21 @@
+.separador {
+    -fx-background-color: #007bff; /* Cambia el color de fondo */
+    -fx-padding: 2; /* Añade espacio alrededor del separador */
+    -fx-border-color: #323232; /* Color del borde */
+    -fx-border-width: 2; /* Ancho del borde */
+}
+
+.button {
+    -fx-background-color: #007bff; /* Color de fondo del botón */
+    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-border-color: #007bff; /* Color del borde */
+    -fx-border-width: 1px; /* Ancho del borde */
+    -fx-padding: 2px 2px; /* Relleno del botón */
+    -fx-border-radius: 4;
+}
+
+.button:hover {
+    -fx-opacity: 0.7;
+    -fx-cursor: hand;
+}
+

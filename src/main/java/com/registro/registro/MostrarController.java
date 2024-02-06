@@ -17,7 +17,7 @@ public class MostrarController implements Initializable {
 
 
     //Variables para tabla de mostrar trabajos
-    ObservableList<Trabajo> data = FXCollections.observableArrayList();
+    public static ObservableList<Trabajo> dataGlobal = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Trabajo> jobsTable;
@@ -25,16 +25,17 @@ public class MostrarController implements Initializable {
 
 
     public void imprimirEnTabla(){
-        OperacionesCRUD.mostrarTrabajos(this.data);
-        jobsTable.setItems(data);
+        OperacionesCRUD.mostrarTrabajos(dataGlobal);
+        jobsTable.setItems(dataGlobal);
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        OperacionesCRUD.mostrarTrabajos(this.data);
-        jobsTable.setItems(data);
+        dataGlobal.clear();
+        OperacionesCRUD.mostrarTrabajos(dataGlobal);
+        jobsTable.setItems(dataGlobal);
         TableFilter<Trabajo> tableFilter = TableFilter.forTableView(jobsTable).apply();
     }
 }

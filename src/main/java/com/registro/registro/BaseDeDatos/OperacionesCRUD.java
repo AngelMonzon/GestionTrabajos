@@ -1,10 +1,13 @@
 package com.registro.registro.BaseDeDatos;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static com.registro.registro.BrrClienteController.mostrarAlerta;
 
 
 public class OperacionesCRUD {
@@ -42,7 +45,7 @@ public class OperacionesCRUD {
             System.out.println("Tabla trabajos creada exitosamente.");
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -80,8 +83,7 @@ public class OperacionesCRUD {
             System.out.println("cliente insertado exitosamente.");
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Cliente no insertado");
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -116,7 +118,7 @@ public class OperacionesCRUD {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -156,7 +158,7 @@ public class OperacionesCRUD {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -184,7 +186,7 @@ public class OperacionesCRUD {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -208,7 +210,7 @@ public class OperacionesCRUD {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -239,7 +241,45 @@ public class OperacionesCRUD {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
+        }
+    }
+
+    //Obtener datos de un trabajo por id
+    public static void obtenerDatosTrabajo(int id, ObservableList<Trabajo> data){
+        String seleccionarTrabajosSQL = "SELECT * " +
+                "FROM trabajos " +
+                "JOIN clientes ON clientes.id_cliente = trabajos.id_cliente " +
+                "WHERE trabajos.id_venta = ?";
+
+        try (Connection conexion = ConnectBD.obtenerConexion();
+             PreparedStatement statement = conexion.prepareStatement(seleccionarTrabajosSQL)) {
+
+            // Establecer el valor del parámetro
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id_venta = resultSet.getInt("id_venta");
+                    int id_cliente = resultSet.getInt("id_cliente");
+                    String nombre_trabajo = resultSet.getString("nombre_trabajo");
+                    LocalDate fecha_instalacion = resultSet.getDate("fecha_instalacion").toLocalDate();
+                    LocalDate fecha_mantenimiento = resultSet.getDate("fecha_mantenimiento").toLocalDate();
+                    double costo = resultSet.getDouble("costo");
+                    String comentarios = resultSet.getString("comentarios");
+                    String nombre_cliente = resultSet.getString("nombre_cliente");
+                    String numero_telefono = resultSet.getString("numero_telefono");
+                    String direccion = resultSet.getString("direccion");
+
+                    data.add(new Trabajo(id_venta, id_cliente, nombre_trabajo, fecha_instalacion, fecha_mantenimiento,
+                            costo, comentarios, nombre_cliente, numero_telefono, direccion));
+                }
+            }
+            ConnectBD.cerrarConexion(conexion);
+
+
+        } catch (SQLException e) {
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -267,7 +307,7 @@ public class OperacionesCRUD {
             ConnectBD.cerrarConexion(conexion);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
 
         return id_cliente;
@@ -300,7 +340,7 @@ public class OperacionesCRUD {
 
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -325,7 +365,7 @@ public class OperacionesCRUD {
             ConnectBD.cerrarConexion(conexion);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -341,7 +381,7 @@ public class OperacionesCRUD {
 
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -357,7 +397,7 @@ public class OperacionesCRUD {
 
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 
@@ -374,7 +414,7 @@ public class OperacionesCRUD {
 
             ConnectBD.cerrarConexion(conexion);
         } catch (SQLException e) {
-            e.printStackTrace();
+            mostrarAlerta("Error en la base de datos." , Alert.AlertType.ERROR);
         }
     }
 

@@ -1,4 +1,8 @@
 
+.root {
+    -fx-font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
 // formato para las celdas del tableview
 .table-cell {
     -fx-padding: 0.5em 0.5em 0.1em 0.3em;
@@ -95,6 +99,15 @@
     -fx-border-color: #c3e6cb; /* Color del borde similar al de Bootstrap */
     -fx-border-width: 1;
     -fx-border-radius: 4; /* Borde redondeado similar a Bootstrap */
+}
+
+.label-info {
+    -fx-background-color: #E0F7FA;
+    -fx-border-color: #007bff;
+    -fx-border-width: 1.5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #007bff;
+    -fx-font-weight: bold;
 }
 
 .textfield {

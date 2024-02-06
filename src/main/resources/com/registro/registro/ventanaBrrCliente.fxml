@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.geometry.Insets?>
 <?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.registro.registro.BrrClienteController"
@@ -21,7 +20,7 @@
 
 
     <padding>
-        <Insets bottom="15.0" left="0.0" right="0.0" top="0.0"/>
+        <Insets bottom="15.0"/>
     </padding>
 
     <VBox>
@@ -69,13 +68,31 @@
 
             <VBox fx:id="jobsPane" spacing="20" alignment="CENTER">
 
-                <Label text="Se borrarar todos los trabajos relacionados con este cliente"></Label>
+                <Pane>
+                    <Button layoutX="0.0" layoutY="18.0" onAction="#cambiarVentana">
+                        <graphic>
+                            <ImageView fitHeight="20" fitWidth="20">
+                                <Image url="@image/volver.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </Pane>
+
+
+
+                <Label text="Se borrarar todos los trabajos relacionados con este cliente" styleClass="label-advertencia"></Label>
 
                 <TableView fx:id="jobsTable" styleClass="">
                     <columns>
                         <TableColumn prefWidth="30" text="ID" styleClass="column-header">
                             <cellValueFactory>
                                 <PropertyValueFactory property="id_venta"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <TableColumn prefWidth="90" text="Cliente">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cliente" />
                             </cellValueFactory>
                         </TableColumn>
 
@@ -109,11 +126,6 @@
                             </cellValueFactory>
                         </TableColumn>
 
-                        <TableColumn prefWidth="90" text="Cliente">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="cliente" />
-                            </cellValueFactory>
-                        </TableColumn>
 
                         <TableColumn prefWidth="90" text="Celular">
                             <cellValueFactory>
@@ -129,7 +141,7 @@
                     </columns>
                 </TableView>
 
-                <Button text="Borrar cliente y trabajos" onAction="#borrarTrabajosCliente"></Button>
+                <Button text="Borrar cliente y trabajos" onAction="#borrarTrabajosCliente" styleClass="warning-button"></Button>
 
             </VBox>
 

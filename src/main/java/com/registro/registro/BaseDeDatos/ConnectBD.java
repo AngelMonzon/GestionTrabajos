@@ -8,10 +8,6 @@ public class ConnectBD {
 
     private static final String URL = "jdbc:sqlite:base_de_datos.db";
 
-    public void crearBaseDeDatos(){
-
-    }
-
     //Conectar a base de datos
     public static Connection obtenerConexion() {
         try {

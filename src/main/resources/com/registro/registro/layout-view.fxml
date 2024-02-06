@@ -11,17 +11,23 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<?import org.kordamp.bootstrapfx.BootstrapFX?>
 <?import java.net.URL?>
 
+<?import javafx.scene.control.Button?>
 <VBox alignment="CENTER" spacing="0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.registro.registro.LayoutController" styleClass="panel">
 
     <stylesheets>
         <URL value="@styles/stylesLayout.css" />
+        <URL value="@styles/styles.css" />
     </stylesheets>
 
-    <HBox HBox.hgrow="NEVER">
+    <HBox HBox.hgrow="NEVER" spacing="50">
+
+        <padding>
+            <Insets bottom="0.0" left="0.0" right="20" top="0.0"/>
+        </padding>
+
         <MenuBar>
             <menus>
                 <!-- Menú 1 -->
@@ -34,6 +40,15 @@
 
             </menus>
         </MenuBar>
+
+        <HBox HBox.hgrow="ALWAYS" />
+
+
+        <StackPane fx:id="mostrarIcon" prefWidth="55" prefHeight="50">
+            <fx:include source="icon-notification.fxml"/>
+        </StackPane>
+
+
     </HBox>
 
     <padding>

@@ -19,11 +19,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
 
 import org.controlsfx.control.SearchableComboBox;
+
+import static com.registro.registro.Main.primaryStage;
 
 public class AgregarController implements Initializable {
 
@@ -46,7 +49,7 @@ public class AgregarController implements Initializable {
 
     //Variables de formulario Agregar Trabajo
 
-    private ArrayList<String> clientesLista = new ArrayList<String>();
+    private ArrayList<String> clientesLista = new ArrayList<>();
 
     @FXML
     private SearchableComboBox<String> trbCliente;
@@ -92,14 +95,16 @@ public class AgregarController implements Initializable {
                 txtNombre.clear();
                 txtNumTel.clear();
                 txtDireccion.clear();
+
                 clientesLista.clear();
                 OperacionesCRUD.mostrarNombresClientes(clientesLista);
+                trbCliente.getItems().clear();
                 trbCliente.getItems().addAll(clientesLista);
+
                 labelSuccess.setVisible(true);
                 labelSuccess.setText("Cliente guardado exitosamente");
                 labelTiempo(labelSuccess);
             } catch (SQLException e) {
-                System.out.println(e);
                 advertenciaLblClientes.setVisible(true);
                 advertenciaLblClientes.setText("Este cliente ya existe");
                 labelTiempo(advertenciaLblClientes);
@@ -114,9 +119,7 @@ public class AgregarController implements Initializable {
 
     //Funcion que agrega tiempo a la label de advertencia
     public void labelTiempo(Label label){
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), event -> {
-            label.setVisible(false);
-        });
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), event -> label.setVisible(false));
         Timeline timeline = new Timeline(keyFrame);
         timeline.play();
     }
@@ -213,8 +216,9 @@ public class AgregarController implements Initializable {
         Scene scene = new Scene(root);
         Stage ventanaExterna = new Stage();
         ventanaExterna.initModality(Modality.APPLICATION_MODAL);
+        ventanaExterna.initOwner(primaryStage);
 
-        Image icon = new Image(getClass().getResourceAsStream("icono.png"));
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("image/icono.png")));
         ventanaExterna.getIcons().add(icon);
         ventanaExterna.setTitle(title);
         ventanaExterna.setScene(scene);

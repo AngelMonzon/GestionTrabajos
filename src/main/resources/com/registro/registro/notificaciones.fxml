@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.registro.registro.NotificacionesController"
+      prefHeight="400.0" prefWidth="200.0" spacing="10">
+
+    <stylesheets>
+        <URL value="@styles/styles-notification.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+
+    <!-- Lunes -->
+    <HBox spacing="20">
+        <Label fx:id="lbl1"/>
+        <Label fx:id="lbl1Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl1Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl1Trabajo"/>
+        <Button text="Ver mas" fx:id="btn1VerMas" onAction="#boton1"/>
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Martes -->
+    <HBox spacing="20">
+        <Label fx:id="lbl2"/>
+        <Label fx:id="lbl2Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl2Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl2Trabajo"/>
+        <Button text="Ver mas" fx:id="btn2VerMas" onAction="#boton2"/>
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Miercoles -->
+    <HBox spacing="20">
+        <Label fx:id="lbl3"/>
+        <Label fx:id="lbl3Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl3Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl3Trabajo"/>
+        <Button text="Ver mas" fx:id="btn3VerMas" onAction="#boton3"/>
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Jueves -->
+    <HBox spacing="20">
+        <Label fx:id="lbl4"/>
+        <Label fx:id="lbl4Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl4Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl4Trabajo"/>
+        <Button text="Ver mas" fx:id="btn4VerMas" onAction="#boton4"/>
+
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Dia 6 -->
+    <HBox spacing="20">
+        <Label fx:id="lbl5"/>
+        <Label fx:id="lbl5Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl5Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl5Trabajo"/>
+        <Button text="Ver mas" fx:id="btn5VerMas" onAction="#boton5"/>
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Sábado -->
+    <HBox spacing="20">
+        <Label fx:id="lbl6"/>
+        <Label fx:id="lbl6Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl6Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl6Trabajo"/>
+        <Button text="Ver mas" fx:id="btn6VerMas" onAction="#boton6"/>
+    </HBox>
+
+    <Separator styleClass="separador"/>
+
+    <!-- Dia 7 -->
+    <HBox spacing="20">
+        <Label fx:id="lbl7"/>
+        <Label fx:id="lbl7Fecha"/>
+        <Label style="-fx-background-color: red; -fx-text-fill: white; -fx-padding: 1px; -fx-font-size: 12px;"
+               fx:id="lbl7Count"/>
+    </HBox>
+
+    <HBox spacing="40">
+        <Label text="Sin trabajos" fx:id="lbl7Trabajo"/>
+        <Button text="Ver mas" fx:id="btn7VerMas" onAction="#boton7"/>
+    </HBox>
+
+
+
+
+</VBox>

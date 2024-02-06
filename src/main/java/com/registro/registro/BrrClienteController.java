@@ -7,12 +7,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.table.TableFilter;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class BrrClienteController implements Initializable {
@@ -51,20 +53,28 @@ public class BrrClienteController implements Initializable {
     private void cambiarVentana() {
 
 
-        try {
-            this.id = clientsTable.getSelectionModel().getSelectedItems().get(0).getId_cliente();
-        } catch (IndexOutOfBoundsException e){
+        if (clientsPane.isVisible()){
+            try {
+                this.id = clientsTable.getSelectionModel().getSelectedItems().get(0).getId_cliente();
+            } catch (IndexOutOfBoundsException ignored){
 
-        }
+            }
 
-        if (this.id > 0){
-            clientsPane.setVisible(false);
-            jobsPane.setVisible(true);
-            OperacionesCRUD.mostrarTrabajosCliente(this.id, dataJobs);
-            System.out.println(dataJobs);
-            jobsTable.getItems().addAll(dataJobs);
-        } else {
-            mostrarAlerta("Ningun cliente seleccionado", Alert.AlertType.INFORMATION);
+            if (this.id > 0){
+                clientsPane.setVisible(false);
+                jobsPane.setVisible(true);
+                OperacionesCRUD.mostrarTrabajosCliente(this.id, dataJobs);
+                jobsTable.getItems().addAll(dataJobs);
+            } else {
+                mostrarAlerta("Ningun cliente seleccionado", Alert.AlertType.INFORMATION);
+            }
+        } else if (jobsPane.isVisible()) {
+            dataJobs.clear();
+            jobsTable.getItems().clear();
+            this.id = 0;
+
+            jobsPane.setVisible(false);
+            clientsPane.setVisible(true);
         }
 
     }
@@ -73,17 +83,31 @@ public class BrrClienteController implements Initializable {
 
     @FXML
     private void borrarTrabajosCliente(){
-        OperacionesCRUD.eliminarTrabajosCliente(this.id);
-        OperacionesCRUD.eliminarCliente(this.id);
-        this.id = 0;
 
-        dataJobs.clear();
-        jobsTable.getItems().clear();
-        dataClients.clear();
-        clientsTable.getItems().clear();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Esta seguro?");
 
-        jobsPane.setVisible(false);
-        clientsPane.setVisible(true);
+        Optional<ButtonType> result = alert.showAndWait();
+
+
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            OperacionesCRUD.eliminarTrabajosCliente(this.id);
+            OperacionesCRUD.eliminarCliente(this.id);
+            this.id = 0;
+
+            dataJobs.clear();
+            jobsTable.getItems().clear();
+            dataClients.clear();
+            clientsTable.getItems().clear();
+
+            OperacionesCRUD.mostrarClientes(dataClients);
+            clientsTable.setItems(dataClients);
+
+            jobsPane.setVisible(false);
+            clientsPane.setVisible(true);
+    }
     }
 
 
