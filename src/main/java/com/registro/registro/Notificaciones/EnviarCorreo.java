@@ -10,6 +10,8 @@ public class EnviarCorreo {
     public static final String username = "adolfo.angel0124@gmail.com"; // Cambiar a tu dirección de correo
     public static final String password = "odcj wtpc gari mfum"; // Cambiar a tu contraseña
 
+    public static String destinatario = "";
+
     public static void enviar(String titulo, String mensaje, String destinatario){
         // Configuración de las propiedades del servidor de correo
         Properties props = new Properties();
@@ -30,7 +32,7 @@ public class EnviarCorreo {
         try {
             // Crear un mensaje de correo
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("adolfo.angel935@gmail.com")); // Cambiar a tu dirección de correo
+            message.setFrom(new InternetAddress(destinatario)); // Cambiar a tu dirección de correo
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario)); // Cambiar al destinatario
             message.setSubject(titulo);
             message.setText(mensaje);

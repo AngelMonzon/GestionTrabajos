@@ -1,6 +1,7 @@
 package com.registro.registro;
 
 import com.registro.registro.BaseDeDatos.OperacionesCRUD;
+import com.registro.registro.BaseDeDatos.Trabajo;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -27,6 +29,7 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.SearchableComboBox;
 
 import static com.registro.registro.Main.primaryStage;
+import static com.registro.registro.MostrarController.dataGlobal;
 
 public class AgregarController implements Initializable {
 
@@ -55,7 +58,7 @@ public class AgregarController implements Initializable {
     private SearchableComboBox<String> trbCliente;
 
     @FXML
-    private TextField trbNombre_trabajo;
+    private AutocompletionTextField trbNombre_trabajo;
 
     @FXML
     private DatePicker trbFecha_instalacion;
@@ -72,6 +75,10 @@ public class AgregarController implements Initializable {
     @FXML
     private Label labelSuccess;
 
+    //Variable para sugerencias en nombre trabajo
+    List<String> sugerencias = new ArrayList<>();
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         OperacionesCRUD.mostrarNombresClientes(clientesLista);
@@ -85,6 +92,18 @@ public class AgregarController implements Initializable {
         advertenciaLblTrabajos.setVisible(false);
         advertenciaLblClientes.setVisible(false);
         labelSuccess.setVisible(false);
+
+
+        for (Trabajo trabajo: dataGlobal){
+            if (!sugerencias.contains(trabajo.getNombre_trabajo())){
+                sugerencias.add(trabajo.getNombre_trabajo());
+            }
+        }
+
+        trbNombre_trabajo.getEntries().addAll(sugerencias);
+
+
+
     }
 
     public void GuardarCliente(){
@@ -204,8 +223,6 @@ public class AgregarController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 
     private void cargarVentanaExterna(String fxml, String title) throws IOException{
         // Cargar el archivo FXML de la ventana externa

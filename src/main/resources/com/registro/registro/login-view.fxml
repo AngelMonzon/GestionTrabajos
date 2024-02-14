@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import java.net.URL?>
+
+<VBox fx:controller="com.registro.registro.LoginController"
+       xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="CENTER">
+    <stylesheets>
+        <URL value="@styles/styles.css" />
+        <URL value="@styles/styles-login.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+
+    <GridPane alignment="CENTER">
+        <Text text="Ingrese un correo " GridPane.columnIndex="0" GridPane.rowIndex="0"
+              GridPane.columnSpan="2" GridPane.halignment="CENTER"
+              styleClass="title">
+            <font>
+                <Font name="Arial" size="20"/>
+            </font>
+        </Text>
+        <Text text="para enviarle notificaciones" GridPane.columnIndex="0" GridPane.rowIndex="1"
+              GridPane.columnSpan="2" GridPane.halignment="CENTER"
+              styleClass="title">
+            <font>
+                <Font name="Arial" size="20"/>
+            </font>
+        </Text>
+        <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+               GridPane.halignment="RIGHT"/>
+        <TextField fx:id="correoField" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="textfield"/>
+        <Text text="Establece una hora:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+              GridPane.columnSpan="2" GridPane.halignment="CENTER"
+              styleClass="title">
+            <font>
+                <Font name="Arial" size="10"/>
+            </font>
+        </Text>
+        <HBox GridPane.halignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"
+        alignment="CENTER">
+            <ComboBox fx:id="horaComboBox"
+                      HBox.hgrow="ALWAYS"/>
+
+            <Spinner fx:id="minutosSpinner" min="0" max="59" prefWidth="50"/>
+        </HBox>
+    </GridPane>
+
+
+
+    <Button text="Entrar" GridPane.columnSpan="2" onAction="#guardarLogin"/>
+
+    <Text fx:id="messageText" fill="RED" GridPane.columnIndex="0" GridPane.rowIndex="5"
+          GridPane.columnSpan="2" GridPane.halignment="CENTER"/>
+</VBox>

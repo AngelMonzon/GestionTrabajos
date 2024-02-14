@@ -1,0 +1,26 @@
+.title {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #007bff; /* Color del texto del título */
+    -fx-padding: 20px;
+}
+
+/* Estilo para el ComboBox */
+.combo-box {
+    -fx-font-size: 14px;
+    -fx-pref-width: 80px; /* Ancho preferido */
+    -fx-background-color: #e0e0e0; /* Cambia el color de fondo */
+    -fx-text-fill: #333333; /* Cambia el color del texto */
+}
+
+/* Estilo para el Spinner */
+.spinner {
+    -fx-font-size: 14px;
+    -fx-pref-width: 60px; /* Ancho preferido */
+    -fx-background-color: #e0e0e0; /* Cambia el color de fondo */
+    -fx-text-fill: #333333; /* Cambia el color del texto */
+}
+.root {
+    -fx-background-color: #e0f7fa;
+}

@@ -13,8 +13,8 @@
 
 <?import java.net.URL?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="0" xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.control.Label?>
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.registro.registro.LayoutController" styleClass="panel">
 
     <stylesheets>
@@ -25,20 +25,17 @@
     <HBox HBox.hgrow="NEVER" spacing="50">
 
         <padding>
-            <Insets bottom="0.0" left="0.0" right="20" top="0.0"/>
+            <Insets right="20"/>
         </padding>
 
         <MenuBar>
-            <menus>
-                <!-- Menú 1 -->
-                <Menu text="Menú">
-                    <items>
-                        <MenuItem fx:id="reiniciar" text="Reiniciar" onAction="#reiniciarVnt"/>
-                        <MenuItem fx:id="salir" text="Salir" onAction="#cerrarVnt"/>
-                    </items>
-                </Menu>
+            <!-- Menú 1 -->
+            <Menu text="Menú">
+                <MenuItem fx:id="cambiarCorreo" text="Cambiar correo" onAction="#cambiarCorreo"/>
+                <MenuItem fx:id="reiniciar" text="Reiniciar" onAction="#reiniciarVnt"/>
+                <MenuItem fx:id="salir" text="Salir" onAction="#cerrarVnt"/>
+            </Menu>
 
-            </menus>
         </MenuBar>
 
         <HBox HBox.hgrow="ALWAYS" />
@@ -67,7 +64,7 @@
 
     </HBox>
 
-    <StackPane alignment="CENTER" fx:id="content">
+    <StackPane fx:id="content">
 
         <!-- Mostrar trabajos en una tabla -->
         <StackPane fx:id="mostrarTrabajos">
@@ -80,5 +77,9 @@
             <fx:include source="agregar-view.fxml"/>
         </StackPane>
     </StackPane>
+
+    <HBox prefHeight="10"/>
+
+    <Label fx:id="lblCorreo" alignment="CENTER"/>
 
 </VBox>

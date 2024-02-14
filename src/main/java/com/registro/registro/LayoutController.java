@@ -1,6 +1,5 @@
 package com.registro.registro;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -11,8 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.registro.registro.Main.cerrarVentana;
-import static com.registro.registro.Main.reiniciarVentana;
+import static com.registro.registro.Main.*;
+import static com.registro.registro.Notificaciones.EnviarCorreo.destinatario;
 
 
 public class LayoutController implements Initializable {
@@ -23,6 +22,9 @@ public class LayoutController implements Initializable {
 
     @FXML
     private MenuItem salir;
+
+    @FXML
+    private MenuItem cambiarCorreo;
 
     //Layouts
     @FXML
@@ -52,6 +54,10 @@ public class LayoutController implements Initializable {
 
     private Toggle selectedToggle;
 
+    //Label para mostrar correo
+    @FXML
+    private Label lblCorreo;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +74,7 @@ public class LayoutController implements Initializable {
         //Extraer toggle sellecionado
         selectedToggle = toggleGroup.getSelectedToggle();
 
+        lblCorreo.setText(destinatario);
 
     }
 
@@ -90,6 +97,12 @@ public class LayoutController implements Initializable {
         } catch (RuntimeException ignored){
 
         }
+    }
+
+    @FXML
+    private void cambiarCorreo() throws IOException {
+        primaryStage.close();
+        Main.cargarLogin(primaryStage);
     }
 
 

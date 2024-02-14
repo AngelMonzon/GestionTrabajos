@@ -7,6 +7,10 @@ module com.registro.registro {
     requires java.sql;
     requires java.desktop;
     requires javax.mail.api;
+    requires com.google.api.client;
+    requires com.google.api.client.json.jackson2;
+    requires com.google.api.client.auth;
+    requires google.api.client;
 
 
     opens com.registro.registro to javafx.fxml;
